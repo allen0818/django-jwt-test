@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'user.apps.UserConfig',
+    'user.apps.UserConfig',    
+    'group.apps.GroupConfig',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +133,13 @@ STATIC_URL = '/static/'
 
 # custom backend
 AUTH_USER_MODEL = 'user.User'
-AUTHENTICATION_BACKENDS = ['user.auth_backend.MyBackend']
+AUTHENTICATION_BACKENDS = ['user.auth.MyBackend']
+
+# REST_FRAMEWORK global settings
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

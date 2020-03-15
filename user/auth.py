@@ -15,21 +15,9 @@ class MyBackend(BaseBackend):
             return None
         return user
 
-        # login_valid = ('test' == username)
-        # pwd_valid = ('test123' == password)
-
-        # if login_valid and pwd_valid:
-        #     try:
-        #         user = User.objects.get(username=username)
-        #     except User.DoesNotExist:
-        #         return None
-        #     return user
-        # else:
-        #     return None
-
     def get_user(self, user_id):
-        User = get_user_model() # or use settings.AUTH_USER_MODEL
-
+        User = get_user_model()
+        
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
