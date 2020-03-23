@@ -132,15 +132,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# custom backend
 AUTH_USER_MODEL = 'user.User'
-AUTHENTICATION_BACKENDS = ['user.auth.MyBackend']
+
+# custom backend
+# https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#writing-an-authentication-backend
+# AUTHENTICATION_BACKENDS = [
+#     # 'django.contrib.auth.backends.ModelBackend'
+#     'user.auth.MyBackend'
+# ]
 
 # REST_FRAMEWORK global settings
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.AllowAny',
     ]
 }

@@ -14,7 +14,7 @@ router.register(r'groups', GroupViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/token/', MyTokenObtainPairView.as_view(), name='my_token_obtain_pair'),
+    path('api/token/obtain/', MyTokenObtainPairView.as_view(), name='token_obtain'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
